@@ -6,9 +6,11 @@ ini_set('display_errors', '1');
 $pwd = trim(shell_exec('pwd'));
 set_include_path(get_include_path() . ':'.$pwd.'/application/libraries');
 set_include_path(get_include_path() . ':'.$pwd.'/application/controllers');
+set_include_path(get_include_path() . ':'.$pwd.'/application/config');
 
 require_once('Util.php');
 require_once('Page_Framework.php');
+require_once('spycYaml/spyc.php');
 /*
  *---------------------------------------------------------------
  * PHP ERROR REPORTING LEVEL
