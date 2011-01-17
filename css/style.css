@@ -1,0 +1,80 @@
+body {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    background: #efefef;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#header {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 0px 10px;
+    height: 40px;
+    min-width: 800px;
+    background: #333333;
+    color: #fff;
+}
+
+    #header .logo {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 300px;
+        display: block;
+        float: left;
+        position: relative;
+    }
+
+    #header .user-status {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 300px;
+        display: block;
+        float: right;
+        position: relative;
+        text-align: right;
+    }
+
+#left-col {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+    width: 230px;
+    position: relative;
+    float: left;
+}
+
+#main-with-left {
+    margin: 0px 0px 0px 250px;
+    padding: 10px 10px 10px 10px;
+    background: red;
+    min-width: 550px;
+    position: relative;
+    background: #fff;
+}
+
+
+.post {
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+    overflow: hidden;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    background: #fff;
+
+}
+
+.gray {
+    background: #fafafa;
+}
+
+
+    .post .title {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 100%;
+        height: 30px;
+        font-weight: bold;
+    }
+
+        .post .content {
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;
+        }

@@ -15,7 +15,6 @@ class Base_Model extends CI_Model
         parent::__construct();
 
         $conf = Spyc::YAMLLoad(APPPATH.'config/mongo_config.yml');
-        //ffff
         $full_host = '';
         if($conf['username'] != '' && $conf['password'] != '')
         {

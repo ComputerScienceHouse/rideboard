@@ -14,6 +14,7 @@ class Page_Framework
     public $css = array();
     public $header_data = array();
     public $pre_css = array();
+    public $left_data;
 
     public function  __construct()
     {
@@ -35,7 +36,7 @@ class Page_Framework
         $this->pre_css[] = $source;
     }
 
-    public function generate_rightCol_default()
+    public function generate_leftCol_default()
     {
         $data = array();
 
@@ -43,15 +44,16 @@ class Page_Framework
         return $data;
     }
 
+    public function set_left_col_data($data)
+    {
+        $this->left_data = $data;
+    }
+
     public function set_header_data($data)
     {
         $this->header_data = array_merge($this->header_data, $data);
     }
 
-    public function set_sublinks($data)
-    {
-        $this->header_data['sub_links'] = $data;
-    }
 
     
     /**
@@ -61,40 +63,32 @@ class Page_Framework
      *                                  IE: $data['header'] is for the header
      * @param string $other_col     The other view file to load
      */
-    public function render($leftCol, $leftCol_data, $rightCol = null, $rightCol_data = array())
+    public function render($rightCol, $rightCol_data, $leftCol = null, $leftCol_data = array())
     {
         $header_data = array();
         $header_data['javascript'] = $this->javascript;
         $header_data['css'] = $this->css;
         $header_data['pre_css'] = $this->pre_css;
-
-        if(isset($_SESSION['loggedIn']))
-        {
-            $header_data['login_link'] = '<a href="'.site_url('login/logout').'">Logout</a> | <a href="'.site_url('account').'">Account</a>';
-        }
-        else
-        {
-            $header_data['login_link'] = '<a href="'.site_url('login').'">Login/Register</a>';
-        }
-
         
 
         $header_data = array_merge($this->header_data, $header_data);
         
         // load header
         $this->CI->load->view('template/header_view', $header_data);
-        $this->CI->load->view($leftCol, $leftCol_data);
-        if($rightCol != null)
+        if($leftCol != null)
         {
 
-            $this->CI->load->view($rightCol, $rightCol_data);
+            $this->CI->load->view($leftCol, $leftCol_data);
         }
         else
         {
-            $colData = array_merge($rightCol_data, $this->generate_rightCol_default());
+            //$colData = array_merge(, $this->generate_leftCol_default());
             //Util::printr($colData);
-            $this->CI->load->view('template/rightCol_view', $colData);
+            //$colData = array_merge($colData, $this->left_data);
+            $this->CI->load->view('template/leftColDefault_view', $leftCol_data);
         }
+        $this->CI->load->view($rightCol, $rightCol_data);
+
         
         $this->CI->load->view('template/footer_view');
         
