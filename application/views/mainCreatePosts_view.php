@@ -1,3 +1,3 @@
 <div id="main-with-left">
-    <?=$posts?>
+    <?=$post_form?>
 </div>

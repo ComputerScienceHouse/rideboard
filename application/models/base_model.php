@@ -9,6 +9,7 @@ class Base_Model extends CI_Model
 
     public $groups_collection;
     public $posts_collection;
+    public $user_collection;
 
     public function  __construct()
     {
@@ -32,6 +33,7 @@ class Base_Model extends CI_Model
 
         $this->groups_collection = $this->mongodb->{"groups"};
         $this->posts_collection = $this->mongodb->{"posts"};
+        $this->user_collection = $this->mongodb->{"users"};
     }
 
 
