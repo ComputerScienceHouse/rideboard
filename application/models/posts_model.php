@@ -12,6 +12,7 @@ class Posts_Model extends Base_Model
     public function __construct()
     {
         parent::__construct();
+        //$this->load->group_model();
     }
 
     public function insert($data)
@@ -43,6 +44,26 @@ class Posts_Model extends Base_Model
             foreach($results as $result)
             {
                 $post = $result;
+            }
+
+            return $post;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function get_flat_posts_by_date()
+    {
+        $results = $this->posts_collection->find(array('parent_id' => 'none'))->sort(array('date_posted' => -1));
+
+        if($results != NULL)
+        {
+            $post = array();
+            foreach($results as $result)
+            {
+                $post[] = $result;
             }
 
             return $post;
@@ -106,6 +127,8 @@ class Posts_Model extends Base_Model
             return array();
         }
     }
+
+
 
 
 

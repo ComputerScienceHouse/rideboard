@@ -5,6 +5,39 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+h1 {
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
+    font-size: 1.3em;
+    color: #333333;
+}
+
+h2 {
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
+    font-size: 1.1em;
+    color: #333333;
+}
+
+h3 {
+    margin: 0px 0px 5px 0px;
+    padding: 0px 0px 0px 0px;
+    font-size: .9em;
+    color: #333333;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+
+
+
+
 #header {
     margin: 0px 0px 0px 0px;
     padding: 10px 10px 0px 10px;
@@ -33,6 +66,12 @@ body {
         text-align: right;
     }
 
+#container {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    min-width: 800px;
+}
+
 #left-col {
     margin: 0px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
@@ -41,14 +80,171 @@ body {
     float: left;
 }
 
+    #left-col .heading {
+        margin: 0px 0px 0px 0px;
+        padding: 5px 0px 5px 0px;
+        height: 18px;
+        text-align: center;
+        background: #333333;
+        color: #fff;
+    }
+
+    #left-col .content {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+    }
+
+        #left-col .content ul {
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;
+            list-style: none;
+        }
+
+            #left-col .content ul li {
+                margin: 0px 0px 0px 0px;
+                padding: 0px 0px 0px 0px;
+                list-style: none;
+            }
+
+                #left-col .content ul li .item {
+                    margin: 0px 0px 0px 0px;
+                    padding: 5px 0px 5px 0px;
+                    height: 18px;
+                    text-align: center;
+                    background: #ffffff;
+                    color: #2a5599;
+                    border-bottom: 1px solid #f3f3f3;
+                }
+
+                #left-col .content ul li .item:hover {
+                    background: #507abe;
+                    cursor: pointer;
+                    color: #fff;
+                    
+                }
+                    #left-col .content ul li .item a, a:visited {
+                        text-decoration: none;
+                        color: #2a5599;
+                    }
+
+    #left-col .new-post {
+        margin: 0px 0px 10px 0px;
+        padding: 5px 0px 5px 0px;
+        height: 18px;
+        text-align: center;
+        background: #2a5599;
+        color: #fff;
+        text-decoration: none;
+
+    }
+
+    #left-col .new-post:hover {
+        background: #507abe;
+        cursor: pointer;
+    }
+
+        #left-col .new-post a, a:visited {
+            text-decoration: none;
+            color: #fff;
+        }
+
+
 #main-with-left {
     margin: 0px 0px 0px 250px;
     padding: 10px 10px 10px 10px;
-    background: red;
-    min-width: 550px;
-    position: relative;
+    min-width: 700px;
+    overflow: hidden;
     background: #fff;
 }
+
+.flat-post {
+    margin: 0px 0px 10px 0px;
+    padding: 5px 0px 5px 0px;
+    height: 60px;
+    background: #f3f3f3;
+}
+
+    .flat-post .post-number {
+        margin: 0px 0px 0px 0px;
+        padding: 20px 5px 0px 5px;
+        width: 10px;
+        height: 40px;
+        display: block;
+        position: relative;
+        float: left;
+        color: #999999;
+    }
+
+    .flat-post .meta-container {
+        margin: 0px 0px 0px 20px;
+        padding: 0px 0px 0px 0px;
+        position: relative;
+        height: 50px;
+    }
+        .flat-post .meta-container .title {
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;
+            font-size: 1.2em;
+            color: #2a5599;
+            font-weight: bold;
+            word-wrap: break-word;
+        }
+
+            .flat-post .meta-container a, a:visited {
+                text-decoration: none;
+                color: #2a5599;
+            }
+
+            .flat-post .meta-container a:hover {
+                text-decoration: none;
+                color: #507abe;
+            }
+
+            .flat-post .meta-container a.source, a:visited.source {
+                text-decoration: none;
+                color: #999999;
+                font-size: .5em;
+                font-weight: normal;
+            }
+
+            .flat-post .meta-container a:hover.source {
+                text-decoration: underline;
+                color: #999999;
+                font-size: .5em;
+                font-weight: normal;
+            }
+
+        .flat-post .meta-container .sub-title {
+            margin: 0px 0px 0px 0px;
+            padding: 1px 0px 2px 0px;
+            height: 14px;
+            font-size: .7em;
+        }
+
+
+
+        .flat-post .meta-container .sub-sub-title {
+            margin: 0px 0px 0px 0px;
+            padding: 3px 0px 2px 0px;
+            height: 12px;
+            font-size: .7em;
+        }
+
+            .flat-post .meta-container .sub-sub-title ul {
+                margin: 0px 0px 0px 0px;
+                padding: 0px 0px 0px 0px;
+                list-style: none;
+                display: inline;
+            }
+
+                .flat-post .meta-container .sub-sub-title ul li {
+                    margin: 0px 0px 0px 0px;
+                    padding: 0px 0px 0px 0px;
+                    list-style: none;
+                    display: inline;
+                }
+
+        
 
 
 .post {
@@ -58,7 +254,6 @@ body {
     border: 1px solid #999999;
     border-radius: 5px;
     background: #fff;
-
 }
 
 .gray {
@@ -78,3 +273,59 @@ body {
             margin: 0px 0px 0px 0px;
             padding: 0px 0px 0px 0px;
         }
+
+
+.form-container {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+    .form-container input {
+        border: 1px solid #999999;
+        background: #fff;
+        height: 20px;
+        width: 200px;
+        font-size: 1em;
+    }
+
+    .form-container .row {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        display: block;
+        min-height: 40px;
+    }
+
+    .form-container .label {
+        margin: 0px 0px 0px 0px;
+        padding: 5px 0px 0px 0px;
+        width: 150px;
+        display: block;
+        position: relative;
+        float: left;
+    }
+
+    .form-container .field {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 200px;
+        display: block;
+        position: relative;
+        float: left;
+    }
+
+    .form-container .button-blue {
+        margin: 0px 0px 0px 0px;
+        padding: 5px 5px 5px 5px;
+        height: 30px;
+        width: 100px;
+        display: block;
+        position: relative;
+        background: #2a5599;
+        font-size: .8em;
+        color: #fff;
+        border: none;
+    }
+
+    .form-container .button-blue:hover {
+        background: #507abe;
+    }
