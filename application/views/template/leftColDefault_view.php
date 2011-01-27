@@ -1,32 +1,11 @@
 <div id="left-col">
-    <div class="new-post">
-        <a href="<?=site_url('new_post')?>">Create New Post</a>
+    <div class="new-post" id="new-post">
+        <a href="#" id="new-post-link">Create New Post</a>
     </div>
     <div class="heading">
-        Heading
+        Groups
     </div>
-    <div class="content">
-        <ul>
-            <li>
-                <div class="item">
-                    Foobar
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    Foobar
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    Foobar
-                </div>
-            </li>
-            <li>
-                <div class="item">
-                    Foobar
-                </div>
-            </li>
-        </ul>
+    <div class="content" id="groups">
+        <?=$groups?>
     </div>
 </div>

@@ -16,5 +16,9 @@ class Base_Controller extends Controller
 
         $this->page = new Page_Framework();
         $this->load->model('posts_model');
+        $this->load->model('group_model');
+
+        $this->page->load_javascript(site_url('js/simplemodal.min.js'));
+        $this->page->load_javascript(site_url('js/create-new-post.js'));
     }
 }

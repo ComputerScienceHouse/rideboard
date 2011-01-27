@@ -19,6 +19,7 @@ class Page_Framework
     public function  __construct()
     {
         $this->CI = get_instance();
+        $this->CI->load->model('group_model');
     }
 
     public function load_javascript($source)
@@ -69,7 +70,8 @@ class Page_Framework
         $header_data['javascript'] = $this->javascript;
         $header_data['css'] = $this->css;
         $header_data['pre_css'] = $this->pre_css;
-        
+
+        $groups = $this->CI->group_model->get_groups();
 
         $header_data = array_merge($this->header_data, $header_data);
         
@@ -82,15 +84,16 @@ class Page_Framework
         }
         else
         {
-            //$colData = array_merge(, $this->generate_leftCol_default());
-            //Util::printr($colData);
-            //$colData = array_merge($colData, $this->left_data);
+
+            $leftCol_data['groups'] = $this->CI->load->view('presenters/leftCol/leftCol', array('groups' => $groups), true);
             $this->CI->load->view('template/leftColDefault_view', $leftCol_data);
         }
         $this->CI->load->view($rightCol, $rightCol_data);
 
+        $footer_data = array();
+        $footer_data['group_dropdown'] = $this->CI->load->view('presenters/footer/group_dropdown', array('groups' => $groups), true);
         
-        $this->CI->load->view('template/footer_view');
+        $this->CI->load->view('template/footer_view', $footer_data);
         
     }
 }

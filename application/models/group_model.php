@@ -56,6 +56,23 @@ class Group_Model extends Base_Model
         }
     }
 
+    public function create_group($data)
+    {
+        $data['group_id'] = $this->generate_group_id();
+
+        try
+        {
+            $this->groups_collection->insert($data, true);
+        }
+        catch(MongoCursorException $e)
+        {
+            // handle error
+            return false;
+        }
+
+        return true;
+    }
+
     private function generate_group_id()
     {
          $id = '';

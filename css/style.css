@@ -26,6 +26,10 @@ h3 {
     color: #333333;
 }
 
+.clearboth {
+    clear: both;
+}
+
 .float-left {
     float: left;
 }
@@ -34,8 +38,142 @@ h3 {
     float: right;
 }
 
+.button-blue {
+    margin: 0px 0px 0px 0px;
+    padding: 5px 5px 5px 5px;
+    height: 30px;
+    width: 100px;
+    display: block;
+    position: relative;
+    background: #2a5599;
+    font-size: .8em;
+    color: #fff;
+    border: none;
+}
+
+.button-blue:hover {
+    background: #507abe;
+}
 
 
+.modal {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+    background: rgba(0, 0, 0, .5);
+    display: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+    .modal .modal-container {
+        margin: 0px 0px 0px 0px;
+        padding: 15px 15px 15px 15px;
+        background: #fff;
+    }
+
+.modal-spinner {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    display: none;
+    height: 40px;
+}
+
+    .modal-spinner .spinner {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        float: left;
+        position: relative;
+    }
+
+    .modal-spinner .loading-text {
+        margin: 5px 0px 0px 10px;
+        padding: 0px 0px 0px 0px;
+        float: left;
+        position: relative;
+    }
+.div-row {
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    height: 40px;
+}
+
+    .div-row .label {
+        margin: 0px 0px 0px 0px;
+        padding: 5px 0px 0px 0px;
+        width: 150px;
+        height: 50px;
+        color: #434343;
+        position: relative;
+        float: left;
+        font-size: 1.3em;
+        text-align: left;
+    }
+
+    .div-row .field {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 330px;
+        height: 50px;
+        color: #434343;
+        position: relative;
+        float: left;
+    }
+
+    .div-row .field-large {
+        margin: 0px 0px 10px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 500px;
+        height: 200px;
+        color: #434343;
+        position: relative;
+        float: left;
+    }
+
+        .div-row .field-large textarea {
+            padding: 5px 0px 0px 0px;
+            background: #f6f6f6;
+            width: 500px;
+        height: 200px;
+            border: 2px solid #cfcfcd;
+            font-size: 1.3em;
+
+        }
+
+        .div-row .field span.error {
+            color: red;
+        }
+
+
+        .div-row .field input, select {
+            padding: 5px 0px 0px 0px;
+            height: 30px;
+            background: #f6f6f6;
+            border: 2px solid #cfcfcd;
+            width: 100%;
+            font-size: 1.3em;
+
+        }
+
+
+
+        .div-row .label .submit-button {
+            margin: 0px 0px 0px 0px;
+            padding: 5px 10px 5px 10px;
+            position: relative;
+            font-size: .8em;
+            float: right;
+            color: #434343;
+            background: #dbdbda;
+            border: none;
+            width: 100px;
+
+
+        }
+
+        .div-row .label .submit-button:hover {
+            background: #e0e1d7;
+            cursor: pointer;
+        }
 
 
 #header {
@@ -328,4 +466,44 @@ h3 {
 
     .form-container .button-blue:hover {
         background: #507abe;
+    }
+
+table.group-table {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    border-collapse: collapse;
+}
+
+    table.group-table thead tr {
+        background: #b8b7b7;
+        color: #434343;
+    }
+
+        table.group-table thead tr th {
+            margin: 0px 0px 0px 0px;
+            padding: 5px 5px 5px 5px;
+        }
+
+    table.group-table tbody {
+        font-size: .9em;
+        color: #434343;
+    }
+
+    table.group-table tbody tr td {
+        margin: 0px 0px 0px 0px;
+        padding: 5px 5px 5px 5px;
+    }
+
+    table.group-table tbody tr td a.delete, a:visited.delete {
+        text-decoration: none;
+        color: #c80000;
+    }
+
+    table.group-table tbody tr td a:hover.delete {
+        text-decoration: underline;
+        color: #eb0000;
+    }
+
+    table.group-table tbody tr:nth-child(even) {
+        background: #f7f9fe;
     }
