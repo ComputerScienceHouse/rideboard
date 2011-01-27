@@ -27,6 +27,8 @@ class Post_Processor extends Base_Controller
 
         $post['group_id'] = $post['groups'];
         unset($post['groups']);
+        $post['parent_id'] = 'none';
+        $post['username'] = $_SESSION['loggedIn']['username'];
 
 
         $error = false;
@@ -43,7 +45,10 @@ class Post_Processor extends Base_Controller
         {
             if($this->posts_model->insert($post))
             {
-                echo json_encode(array('status' => 'true', 'msg' => 'Post added!'));
+                $posts = $this->posts_model->get_flat_posts_by_date();
+                $posts = $this->load->view('presenters/main/flat_posts', array('posts' => $posts), true);
+
+                echo json_encode(array('status' => 'true', 'msg' => 'Post added!', 'posts' => $posts));
             }
             else
             {

@@ -12,7 +12,7 @@ class Posts_Model extends Base_Model
     public function __construct()
     {
         parent::__construct();
-        //$this->load->group_model();
+        $this->load->model('group_model');
     }
 
     public function insert($data)
@@ -43,7 +43,9 @@ class Posts_Model extends Base_Model
             $post = array();
             foreach($results as $result)
             {
-                $post = $result;
+                $tmp = $result;
+                $tmp['group'] = $this->group_model->get_group_for_id($tmp['group_id']);
+                $post = $tmp;
             }
 
             return $post;
@@ -63,7 +65,9 @@ class Posts_Model extends Base_Model
             $post = array();
             foreach($results as $result)
             {
-                $post[] = $result;
+                $tmp = $result;
+                $tmp['group'] = $this->group_model->get_group_for_id($tmp['group_id']);
+                $post[] = $tmp;
             }
 
             return $post;
@@ -87,7 +91,7 @@ class Posts_Model extends Base_Model
         foreach($results as $res)
         {
             $tmp_post = $res;
-
+            $tmp_post['group'] = $this->group_model->get_group_for_id($tmp_post['group_id']);
             // get the children
             $tmp_post['children'] = $this->get_child_thread($tmp_post['post_id']);
 
@@ -114,6 +118,7 @@ class Posts_Model extends Base_Model
             foreach($results as $res)
             {
                 $tmp_child = $res;
+                $tmp_post['group'] = $this->group_model->get_group_for_id($tmp_post['group_id']);
                 // get the children
                 $tmp_child['children'] = $this->get_child_thread($res['post_id']);
                 $child_posts[] = $tmp_child;

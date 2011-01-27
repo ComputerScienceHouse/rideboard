@@ -20,5 +20,13 @@ class Base_Controller extends Controller
 
         $this->page->load_javascript(site_url('js/simplemodal.min.js'));
         $this->page->load_javascript(site_url('js/create-new-post.js'));
+
+        //TEMPORARY
+        if(!isset($_SESSION['loggedIn']))
+        {
+            $_SESSION['loggedIn'] = array('username' => 'mcg1sean',
+                                          'user_id' => '123456789',
+                                          'full_name' => 'Sean McGary');
+        }
     }
 }

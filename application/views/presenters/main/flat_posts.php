@@ -10,10 +10,10 @@ foreach($posts as $post)
     </div>
     <div class="meta-container">
         <div class="title">
-            <a href="#"><?=$post['post_title']?></a> <a href="#" class="source">(self.groupname)</a>
+            <a href="#"><?=$post['post_title']?></a> <a href="#" class="source">(<?=$post['group']['group_name']?>)</a>
         </div>
         <div class="sub-title">
-            posted 5 hours ago by <?=$post['username']?> to groupname
+            posted <?=timespan($post['date_posted'])?> ago by <?=$post['username']?>
         </div>
         <div class="sub-sub-title">
             <ul>

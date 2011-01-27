@@ -1,4 +1,7 @@
 </div>
+<script type="text/javascript">
+    var create_new_post = '<?=site_url('post_processor/new_post')?>';
+</script>
 <div id="new-post-modal" class="modal">
     <div class="modal-container">
         <form name="new-post-form" id="new-post-form">
@@ -30,13 +33,13 @@
                 <div class="label">
                     <input type="submit" class="button-blue float-left" value="Login" id="submit-login">
                 </div>
-                <div class="field">
+                <div class="field" id="new-post-status">
                     <span class="error" id="login-error"></span>
                 </div>
 
             </div>
         </form>
-        <div class="modal-spinner" id="logging-in">
+        <div class="modal-spinner clearboth" id="posting">
             <div class="spinner">
                 <img src="<?=site_url('css/images/ajax-loader.gif')?>">
             </div>
