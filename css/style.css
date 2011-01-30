@@ -55,6 +55,23 @@ h3 {
     background: #507abe;
 }
 
+.button-blue-small {
+    margin: 0px 0px 0px 0px;
+    padding: 5px 5px 5px 5px;
+    height: 25px;
+    width: 80px;
+    display: block;
+    position: relative;
+    background: #2a5599;
+    font-size: .6em;
+    color: #fff;
+    border: none;
+}
+
+.button-blue-small:hover {
+    background: #507abe;
+}
+
 
 .modal {
     margin: 0px 0px 0px 0px;
@@ -94,7 +111,7 @@ h3 {
 .div-row {
     margin: 10px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
-    height: 40px;
+    min-height: 40px;
 }
 
     .div-row .label {
@@ -295,15 +312,113 @@ h3 {
     background: #fff;
 }
 
+.white {
+    background: #fff;
+}
+
+.gray {
+    background: #f3f3f3;
+}
+
+.left-border {
+    border-left: 1px dotted #999999;
+}
+
+.left-margin {
+    margin-left: 15px;
+}
+
+.post-replies {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+    .post-replies .post-info {
+        margin: 0px 0px 5px 0px;
+        padding: 0px 0px 0px 0px;
+        font-size: .8em;
+        color: #999999;
+    }
+
+        .post-replies .post-info a, a:visited {
+            color: #2a5599;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .post-replies .post-info a:hover {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+
+
+    .post-replies .post {
+        margin: 0px 0px 5px 0px;
+        padding: 5px 5px 5px 5px;
+        overflow: hidden;
+        /*background: #f3f3f3;*/
+    }
+
+
+    .post-replies .post .title {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 100%;
+        height: 30px;
+        font-weight: bold;
+    }
+
+    .post-replies .post .content {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        font-size: .9em;
+        line-height: 1.2em;
+    }
+
+    .post-replies .post .actions {
+        margin: 5px 0px 5px 0px;
+        padding: 0px 0px 0px 0px;
+        font-size: .7em;
+        color: #999999;
+    }
+
+        .post-replies .post .actions a, a:visited {
+            color: #999999;
+                     text-decoration: none;
+            font-weight: bold;
+        }
+
+        .post-replies .post .actions a:hover {
+            color: #999999;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+    .post-replies .post .local-reply {
+        display: none;
+    }
+
+    .post-replies .post .local-reply textarea {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        width: 300px;
+        height: 100px;
+        border: 1px solid #999999;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: .9em;
+    }
+
+
+
 .flat-post {
-    margin: 0px 0px 10px 0px;
-    padding: 5px 0px 5px 0px;
-    height: 60px;
+    margin: 0px 5px 0px 0px;
+    padding: 5px 0px 15px 0px;
     background: #f3f3f3;
 }
 
     .flat-post .post-number {
-        margin: 0px 0px 0px 0px;
+        margin: 0px 15px 0px 0px;
         padding: 20px 5px 0px 5px;
         width: 10px;
         height: 40px;
@@ -314,10 +429,9 @@ h3 {
     }
 
     .flat-post .meta-container {
-        margin: 0px 0px 0px 20px;
+        margin: 0px 0px 0px 5px;
         padding: 0px 0px 0px 0px;
         position: relative;
-        height: 50px;
     }
         .flat-post .meta-container .title {
             margin: 0px 0px 0px 0px;
@@ -359,6 +473,14 @@ h3 {
             font-size: .7em;
         }
 
+    .flat-post .post-content {
+        margin: 10px 5px 10px 0px;
+        padding: 5px 5px 5px 5px;
+        border: 1px solid #999999;
+        background: #fff;
+        font-size: .9em;
+    }
+
 
 
         .flat-post .meta-container .sub-sub-title {
@@ -385,33 +507,23 @@ h3 {
         
 
 
-.post {
-    margin: 5px 5px 5px 5px;
-    padding: 5px 5px 5px 5px;
-    overflow: hidden;
-    border: 1px solid #999999;
-    border-radius: 5px;
-    background: #fff;
+
+
+.top-reply {
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 0px;
+    border-bottom: 1px solid #999999;
 }
 
-.gray {
-    background: #fafafa;
-}
-
-
-    .post .title {
+    .top-reply textarea {
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
-        width: 100%;
-        height: 30px;
-        font-weight: bold;
+        width: 500px;
+        height: 100px;
+        border: 1px solid #999999;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: .9em;
     }
-
-        .post .content {
-            margin: 0px 0px 0px 0px;
-            padding: 0px 0px 0px 0px;
-        }
-
 
 .form-container {
     margin: 0px 0px 0px 0px;

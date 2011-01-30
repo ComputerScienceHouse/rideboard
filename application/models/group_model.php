@@ -56,6 +56,27 @@ class Group_Model extends Base_Model
         }
     }
 
+    public function get_group_for_name($name)
+    {
+        $results = $this->groups_collection->find(array('group_name' => $name));
+
+        if($results != NULL)
+        {
+            $group = array();
+
+            foreach($results as $result)
+            {
+                $group = $result;
+            }
+
+            return $group;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function create_group($data)
     {
         $data['group_id'] = $this->generate_group_id();

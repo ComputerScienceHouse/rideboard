@@ -1,3 +1,5 @@
 <div id="main-with-left">
-    <?=$posts?>
+    <div id="post-container">
+        <?=$posts?>
+    </div>
 </div>

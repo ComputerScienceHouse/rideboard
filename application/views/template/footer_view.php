@@ -31,7 +31,7 @@
             </div>
             <div class="div-row clearboth">
                 <div class="label">
-                    <input type="submit" class="button-blue float-left" value="Login" id="submit-login">
+                    <input type="submit" class="button-blue float-left" value="Post" id="submit-login">
                 </div>
                 <div class="field" id="new-post-status">
                     <span class="error" id="login-error"></span>

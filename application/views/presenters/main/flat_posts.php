@@ -10,7 +10,7 @@ foreach($posts as $post)
     </div>
     <div class="meta-container">
         <div class="title">
-            <a href="#"><?=$post['post_title']?></a> <a href="#" class="source">(<?=$post['group']['group_name']?>)</a>
+            <a href="<?=site_url('g/'.$post['group']['group_name'].'/post/'.$post['post_id'])?>"><?=$post['post_title']?></a> <a href="#" class="source">(<?=$post['group']['group_name']?>)</a>
         </div>
         <div class="sub-title">
             posted <?=timespan($post['date_posted'])?> ago by <?=$post['username']?>

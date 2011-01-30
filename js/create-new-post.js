@@ -38,8 +38,8 @@ $(document).ready(function(){
                         $.modal.close();
                     }, 1000);
 
-                    $('#main-with-left').html("");
-                    $('#main-with-left').append(obj.posts);
+                    $('#post-container').html("");
+                    $('#post-container').append(obj.posts);
 
                 }
                 else

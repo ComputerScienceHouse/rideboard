@@ -78,14 +78,45 @@ class Posts_Model extends Base_Model
         }
     }
 
+    public function get_flat_posts_by_group_name($group_name)
+    {
+        $group_id = $this->group_model->get_group_for_name($group_name);
+        $results = $this->posts_collection->find(array('parent_id' => 'none', 'group_id' => $group_id['group_id']))->sort(array('date_posted' => -1));
+
+        if($results != NULL)
+        {
+            $post = array();
+            foreach($results as $result)
+            {
+                $tmp = $result;
+                $tmp['group'] = $this->group_model->get_group_for_id($tmp['group_id']);
+                $post[] = $tmp;
+            }
+
+            return $post;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /**
      * Get all of the top level posts. Top level posts have a parent_id of 'none'
      *
      * @return array
      */
-    public function get_posts_threaded()
+    public function get_posts_threaded($parent_id = 'none', $parent_post = null)
     {
-        $results = $this->posts_collection->find(array('parent_id' => 'none'))->sort(array('date_posted', -1));
+        $query = array('parent_id' => $parent_id);
+
+        if($parent_post != null)
+        {
+            $query['post_id'] = $parent_post;
+        }
+
+        
+        $results = $this->posts_collection->find($query)->sort(array('date_posted', -1));
 
         $top_posts = array();
         foreach($results as $res)
@@ -118,7 +149,7 @@ class Posts_Model extends Base_Model
             foreach($results as $res)
             {
                 $tmp_child = $res;
-                $tmp_post['group'] = $this->group_model->get_group_for_id($tmp_post['group_id']);
+                $tmp_child['group'] = $this->group_model->get_group_for_id($tmp_child['group_id']);
                 // get the children
                 $tmp_child['children'] = $this->get_child_thread($res['post_id']);
                 $child_posts[] = $tmp_child;

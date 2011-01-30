@@ -5,7 +5,7 @@
     ?>
     <li>
         <div class="item">
-            <?=$group['group_name']?>
+           <a href="<?=site_url('g/'.$group['group_name'])?>"><?=$group['group_name']?></a>
         </div>
     </li>
     <?php
