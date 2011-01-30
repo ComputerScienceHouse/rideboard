@@ -38,8 +38,9 @@ $(document).ready(function(){
                         $.modal.close();
                     }, 1000);
 
-                    $('#post-container').html("");
-                    $('#post-container').append(obj.posts);
+                    window.location = obj.redirect;
+                    //$('#post-container').html("");
+                    //$('#post-container').append(obj.posts);
 
                 }
                 else

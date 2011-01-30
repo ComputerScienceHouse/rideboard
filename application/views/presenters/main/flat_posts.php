@@ -24,6 +24,7 @@ foreach($posts as $post)
         </div>
     </div>
 </div>
+    <br>
 <?php
 $counter++;
 }

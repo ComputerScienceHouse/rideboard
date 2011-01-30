@@ -43,12 +43,12 @@ class Post_Processor extends Base_Controller
 
         if($error == false)
         {
-            if($this->posts_model->insert($post))
+            $insert_res = $this->posts_model->insert($post);
+            if($insert_res)
             {
-                $posts = $this->posts_model->get_flat_posts_by_date();
-                $posts = $this->load->view('presenters/main/flat_posts', array('posts' => $posts), true);
+                $redirect = site_url('g/'.$insert_res['group']['group_name'].'/post/'.$insert_res['post_id']);
 
-                echo json_encode(array('status' => 'true', 'msg' => 'Post added!', 'posts' => $posts));
+                echo json_encode(array('status' => 'true', 'msg' => 'Post added!', 'redirect' => $redirect));
             }
             else
             {

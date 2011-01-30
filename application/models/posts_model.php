@@ -30,8 +30,29 @@ class Posts_Model extends Base_Model
             return false;
         }
 
-        return true;
 
+        return $this->get_post_for_date($data['date_posted']);
+
+    }
+
+    public function get_post_for_date($date)
+    {
+        $result = $this->posts_collection->find(array('date_posted' => $date))->limit(1);
+
+        if($result != null)
+        {
+            $post = array();
+            foreach($result as $res)
+            {
+                $tmp = $res;
+                $tmp['group'] = $this->group_model->get_group_for_id($tmp['group_id']);
+                $post = $tmp;
+            }
+
+            return $post;
+        }
+
+        return false;
     }
 
     public function get_post_for_id($id)
@@ -163,11 +184,6 @@ class Posts_Model extends Base_Model
             return array();
         }
     }
-
-
-
-
-
 
     public function get_posts_flat()
     {
