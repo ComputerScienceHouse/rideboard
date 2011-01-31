@@ -17,17 +17,12 @@ class Base_Controller extends Controller
         $this->page = new Page_Framework();
         $this->load->model('posts_model');
         $this->load->model('group_model');
+        $this->load->model('user_model');
 
         $this->page->load_javascript(site_url('js/simplemodal.min.js'));
         $this->page->load_javascript(site_url('js/create-new-post.js'));
 
-        //TEMPORARY
-        if(!isset($_SESSION['loggedIn']))
-        {
-            $_SESSION['loggedIn'] = array('username' => 'mcg1sean',
-                                          'user_id' => '123456789',
-                                          'full_name' => 'Sean McGary');
-        }
+
     }
 
     protected function format_threaded_posts($posts, $color = 'gray', $left_border = '', $left_margin = "")
@@ -61,26 +56,32 @@ class Base_Controller extends Controller
 
             if(!empty($post['children']))
             {
+                $new_color = $color;
+
                 if($color == 'gray')
                 {
-                    $color = 'white';
+                    $new_color = 'white';
                 }
                 else
                 {
-                    $color = 'gray';
+                    $new_color = 'gray';
                 }
+
+                $new_left_border = $left_border;
 
                 if($left_border == "")
                 {
-                    $left_border = 'left-border';
+                    $new_left_border = 'left-border';
                 }
+
+                $new_left_margin = $left_margin;
 
                 if($left_margin == "")
                 {
-                    $left_margin = "left-margin";
+                    $new_left_margin = "left-margin";
                 }
 
-                $tmp_string .= $this->format_threaded_posts($post['children'], $color, $left_border, $left_margin);
+                $tmp_string .= $this->format_threaded_posts($post['children'], $new_color, $new_left_border, $new_left_margin);
 
             }
 

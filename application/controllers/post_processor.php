@@ -29,6 +29,7 @@ class Post_Processor extends Base_Controller
         unset($post['groups']);
         $post['parent_id'] = 'none';
         $post['username'] = $_SESSION['loggedIn']['username'];
+        $post['post_count'] = '0';
 
 
         $error = false;
@@ -65,8 +66,6 @@ class Post_Processor extends Base_Controller
     {
         $post_list = array('parent_id', 'reply_content', 'parent_id', 'group_id', 'root_post_id', 'post_title');
 
-
-
         $post = array();
         $error = false;
         foreach($post_list as $item)
@@ -92,6 +91,8 @@ class Post_Processor extends Base_Controller
                 //$data['post'] = $posts[0];
 
                 //$data['replies'] = $this->format_threaded_posts($data['post']['children']);
+                $this->posts_model->increment_post_count($post['root_post_id']);
+                
                 $posts = $this->posts_model->get_posts_threaded('none', $post['root_post_id']);
                 $posts = $posts[0];
                 //Util::printr($data['post']);

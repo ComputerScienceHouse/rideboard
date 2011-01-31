@@ -23,7 +23,16 @@
                 Logo here
             </div>
             <div class="user-status">
-                Welcome User!
+                <?php
+                if(isset($_SESSION['loggedIn']))
+                {
+                    echo 'Welcome '.$_SESSION['loggedIn']['full_name'].' | <a href="#">Account</a> | <a href="'.site_url('login/logout').'">Logout<a>';
+                }
+                else
+                {
+                    echo '<a href="'.site_url('login').'">Login</a>';
+                }
+                ?>
             </div>
         </div>
         <div id="container">

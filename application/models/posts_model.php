@@ -35,11 +35,22 @@ class Posts_Model extends Base_Model
 
     }
 
+    public function increment_post_count($root_id)
+    {
+        $result = $this->get_post_for_id($root_id);
+
+        (int)$result['post_count'] += 1;
+
+        $this->posts_collection->update(array('post_id' => $root_id), $result);
+
+        
+    }
+
     public function get_post_for_date($date)
     {
         $result = $this->posts_collection->find(array('date_posted' => $date))->limit(1);
 
-        if($result != null)
+        if($result->count() > 0)
         {
             $post = array();
             foreach($result as $res)
@@ -52,14 +63,14 @@ class Posts_Model extends Base_Model
             return $post;
         }
 
-        return false;
+        return array();
     }
 
     public function get_post_for_id($id)
     {
         $results = $this->posts_collection->find(array('post_id' => $id))->limit(1);
 
-        if($results != NULL)
+        if($results->count() > 0)
         {
             $post = array();
             foreach($results as $result)
@@ -73,7 +84,7 @@ class Posts_Model extends Base_Model
         }
         else
         {
-            return false;
+            return array();
         }
     }
 
@@ -81,7 +92,7 @@ class Posts_Model extends Base_Model
     {
         $results = $this->posts_collection->find(array('parent_id' => 'none'))->sort(array('date_posted' => -1));
 
-        if($results != NULL)
+        if($results->count() > 0)
         {
             $post = array();
             foreach($results as $result)
@@ -95,7 +106,7 @@ class Posts_Model extends Base_Model
         }
         else
         {
-            return false;
+            return array();
         }
     }
 
@@ -104,7 +115,7 @@ class Posts_Model extends Base_Model
         $group_id = $this->group_model->get_group_for_name($group_name);
         $results = $this->posts_collection->find(array('parent_id' => 'none', 'group_id' => $group_id['group_id']))->sort(array('date_posted' => -1));
 
-        if($results != NULL)
+        if($results->count() > 0)
         {
             $post = array();
             foreach($results as $result)
@@ -118,7 +129,7 @@ class Posts_Model extends Base_Model
         }
         else
         {
-            return false;
+            return array();
         }
     }
 
@@ -164,7 +175,7 @@ class Posts_Model extends Base_Model
     {
         $results = $this->posts_collection->find(array('parent_id' => $parent_id))->sort(array('date_posted', -1));
 
-        if($results != NULL)
+        if($results->count() > 0)
         {
             $child_posts = array();
             foreach($results as $res)
@@ -189,7 +200,7 @@ class Posts_Model extends Base_Model
     {
         $results = $this->posts_collection->find();
 
-        if($results != NULL)
+        if($results->count() > 0)
         {
             $posts = array();
             foreach($results as $result)
@@ -201,7 +212,7 @@ class Posts_Model extends Base_Model
             }
         else
         {
-            return false;
+            return array();
         }
     }
 

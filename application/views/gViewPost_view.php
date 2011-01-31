@@ -18,9 +18,9 @@
             </div>
             <div class="sub-sub-title">
                 <ul>
-                    <li>1337 replies</li>
-                    <li>save</li>
-                    <li>report</li>
+                    <li><?=$post['post_count']?> replies</li>
+                    <li><a href="#">save</a></li>
+                    <li><a href="#">report</a></li>
                 </ul>
             </div>
         </div>

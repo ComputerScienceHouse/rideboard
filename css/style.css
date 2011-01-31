@@ -219,7 +219,14 @@ h3 {
         float: right;
         position: relative;
         text-align: right;
+        font-size: .8em;
     }
+
+        #header .user-status a {
+            text-decoration: none;
+            color: #2a5599
+        }
+        
 
 #container {
     margin: 0px 0px 0px 0px;
@@ -277,10 +284,19 @@ h3 {
                     color: #fff;
                     
                 }
+
                     #left-col .content ul li .item a, a:visited {
                         text-decoration: none;
+                        font-weight: normal;
                         color: #2a5599;
                     }
+
+                    #left-col .content ul li .item a:hover {
+                        color: #fff;
+                        font-weight: normal;
+                    }
+
+
 
     #left-col .new-post {
         margin: 0px 0px 10px 0px;
@@ -385,7 +401,7 @@ h3 {
 
         .post-replies .post .actions a, a:visited {
             color: #999999;
-                     text-decoration: none;
+            text-decoration: none;
             font-weight: bold;
         }
 
@@ -502,6 +518,24 @@ h3 {
                     padding: 0px 0px 0px 0px;
                     list-style: none;
                     display: inline;
+                }
+
+                
+
+                .flat-post .meta-container .sub-sub-title ul li a, a:visited {
+                    color: #999999;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+
+                .flat-post .meta-container .sub-sub-title ul li a:hover {
+                    color: #999999;
+                    text-decoration: underline;
+                    font-weight: bold;
+                }
+
+                .flat-post .meta-container .sub-sub-title ul li:not(:first-of-type){
+                    margin-left: 5px;
                 }
 
         
