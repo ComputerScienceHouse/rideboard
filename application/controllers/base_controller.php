@@ -39,8 +39,10 @@ class Base_Controller extends Controller
                                 </div>
                                 <div class="content">
                                     '.Markdown($post['post_content']).'
-                                </div>
-                                <div class="actions">
+                                </div>';
+            if(isset($_SESSION['loggedIn']))
+            {
+                $tmp_string .= '<div class="actions">
                                     <a href="#">permalink</a> | <a href="#" value="'.$post['post_id'].'" class="toggle-reply">reply</a>
                                 </div>
                                 <div class="local-reply" id="reply_'.$post['post_id'].'">
@@ -53,6 +55,13 @@ class Base_Controller extends Controller
                                         </div>
                                     </form>
                                 </div>';
+            }
+            else
+            {
+                $tmp_string .= '<div class="actions">
+                        <a href="#">permalink</a>
+                      </div>';
+            }
 
             if(!empty($post['children']))
             {
