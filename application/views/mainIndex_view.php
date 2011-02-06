@@ -1,5 +1,5 @@
 <div id="main-with-left">
     <div id="post-container">
-        <?=$posts?>
+        <?=$event_list?>
     </div>
 </div>

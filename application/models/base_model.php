@@ -7,9 +7,11 @@ class Base_Model extends CI_Model
     public $mongodb;
     private $database;
 
-    public $groups_collection;
-    public $posts_collection;
     public $user_collection;
+    public $vehicle_collection;
+    public $event_collection;
+    public $event_vehicles;
+    
 
     public function  __construct()
     {
@@ -31,9 +33,12 @@ class Base_Model extends CI_Model
         $this->mongodb_conn = new Mongo('mongodb://'.$full_host);
         $this->mongodb = $this->mongodb_conn->selectDB($this->database);
 
-        $this->groups_collection = $this->mongodb->{"groups"};
-        $this->posts_collection = $this->mongodb->{"posts"};
-        $this->user_collection = $this->mongodb->{"users"};
+        $this->user_collection = $this->mongodb->{'users'};
+        $this->vehicle_collection = $this->mongodb->{'vehicles'};
+        $this->event_collection = $this->mongodb->{'events'};
+        $this->event_vehicles = $this->mongodb->{'event_vehicles'};
+        
+
     }
 
 

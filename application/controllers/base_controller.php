@@ -15,91 +15,39 @@ class Base_Controller extends Controller
         parent::__construct();
 
         $this->page = new Page_Framework();
-        $this->load->model('posts_model');
-        $this->load->model('group_model');
         $this->load->model('user_model');
+        $this->load->model('event_model');
+        $this->load->model('vehicle_model');
 
         $this->page->load_javascript(site_url('js/simplemodal.min.js'));
-        $this->page->load_javascript(site_url('js/create-new-post.js'));
+        $this->page->load_javascript(site_url('js/create-new-event.js'));
 
-
-    }
-
-    protected function format_threaded_posts($posts, $color = 'gray', $left_border = '', $left_margin = "")
-    {
-        $ret_string = '';
-        //Util::printr($posts);
-        foreach($posts as $post)
+        if(!isset($_SESSION['loggedIn']))
         {
-            //Util::printr($post);
-            $tmp_string = '';
-            $tmp_string .= '<div class="post '.$color.' '.$left_border.' '.$left_margin.'">
-                                <div class="post-info">
-                                    <a href="#">'.$post['username'].'</a> - '.timespan($post['date_posted']).' ago
-                                </div>
-                                <div class="content">
-                                    '.Markdown($post['post_content']).'
-                                </div>';
-            if(isset($_SESSION['loggedIn']))
-            {
-                $tmp_string .= '<div class="actions">
-                                    <a href="#">permalink</a> | <a href="#" value="'.$post['post_id'].'" class="toggle-reply">reply</a>
-                                </div>
-                                <div class="local-reply" id="reply_'.$post['post_id'].'">
-                                    <form class="local-reply-form" name="local-reply-form" id="local-reply-form-'.$post['post_id'].'" value="'.$post['post_id'].'">
-                                        <div class="div-row">
-                                            <textarea name="reply_content" id="reply_content"></textarea>
-                                        </div>
-                                        <div class="div-row clearboth">
-                                            <input type="submit" class="button-blue-small" value="Reply">
-                                        </div>
-                                    </form>
-                                </div>';
-            }
-            else
-            {
-                $tmp_string .= '<div class="actions">
-                        <a href="#">permalink</a>
-                      </div>';
-            }
+            $user = $this->user_model->user_exists($_SERVER['WEBAUTH_USER']);
 
-            if(!empty($post['children']))
+            if($user == false)
             {
-                $new_color = $color;
+                $insert_user = array('username' => $_SERVER['WEBAUTH_USER'],
+                                     'full_name' => $_SERVER['WEBAUTH_LDAP_CN']
+                                     );
+                $user = $this->user_model->create_user($insert_user);
 
-                if($color == 'gray')
+                if($user != false)
                 {
-                    $new_color = 'white';
+                    $_SESSION['loggedIn'] = $user;
                 }
                 else
                 {
-                    $new_color = 'gray';
+                    echo 'Exception thrown creating user';
                 }
-
-                $new_left_border = $left_border;
-
-                if($left_border == "")
-                {
-                    $new_left_border = 'left-border';
-                }
-
-                $new_left_margin = $left_margin;
-
-                if($left_margin == "")
-                {
-                    $new_left_margin = "left-margin";
-                }
-
-                $tmp_string .= $this->format_threaded_posts($post['children'], $new_color, $new_left_border, $new_left_margin);
-
             }
-
-            // close the post tag and add it to the ret_string;
-            $tmp_string .= '</div>';
-
-            $ret_string .= $tmp_string;
+            else
+            {
+                $_SESSION['loggedIn'] = $user;
+            }
         }
-
-        return $ret_string;
     }
+
+    
 }

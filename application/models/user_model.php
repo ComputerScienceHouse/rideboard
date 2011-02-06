@@ -14,33 +14,13 @@ class User_Model extends Base_Model
         parent::__construct();
     }
 
-    public function create_user()
+    public function user_exists($username)
     {
-        $data = array('username' => 'mcg1sean',
-                      'user_id' => '123456789',
-                      'full_name' => 'Sean McGary',
-                      'password' => 'cf140b49ef7c487d32279fa7191df3b250c7904a',
-                      'date_created' => time());
+        $results = $this->user_collection->find(array('username' => $username))->limit(1);
 
-        try
-        {
-            $this->user_collection->insert($data, true);
-        }
-        catch(MongoCursorException $e)
-        {
-            echo $e;
-        }
-    }
-
-    public function auth_user($username, $password)
-    {
-        $password = sha1($password);
-
-        $results = $this->user_collection->find(array('username' => $username, 'password' => $password))->limit(1);
-
+        $user = array();
         if($results->count() > 0)
         {
-            $user = array();
             foreach($results as $res)
             {
                 $user = $res;
@@ -48,8 +28,29 @@ class User_Model extends Base_Model
 
             return $user;
         }
+        else
+        {
+            return false;
+        }
+    }
 
-        return false;
+
+    public function create_user($user_data)
+    {
+        $user_data['date_created'] = time();
+        $user_data['user_id'] = $this->generate_user_id();
+
+        try
+        {
+            $this->user_collection->insert($user_data, true);
+
+            return $this->get_user_for_id($user_data['user_id']);
+        }
+        catch(MongoCursorException $e)
+        {
+            echo $e;
+            return false;
+        }
     }
 
     public function get_user_for_id($id)

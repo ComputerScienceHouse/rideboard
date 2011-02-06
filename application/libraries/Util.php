@@ -7,6 +7,12 @@ class Util
         print_r($string);
         echo "</pre>";
     }
+
+    public static function format_date($unix_time)
+    {
+        $format = 'm/d/y';
+        return date($format, $unix_time);
+    }
 }
 
 ?>

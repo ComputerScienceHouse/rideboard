@@ -14,9 +14,11 @@ class Post_Processor extends Base_Controller
         parent::__construct();
     }
 
-    public function new_post()
+
+
+    public function new_event()
     {
-        $post_list  = array('post_title', 'post_content', 'groups');
+        $post_list  = array('event_name', 'event_date', 'event_location', 'event_desc');
 
         $post = array();
 
@@ -25,31 +27,28 @@ class Post_Processor extends Base_Controller
             $post[$item] = $this->input->post($item);
         }
 
-        $post['group_id'] = $post['groups'];
-        unset($post['groups']);
-        $post['parent_id'] = 'none';
-        $post['username'] = $_SESSION['loggedIn']['username'];
-        $post['post_count'] = '0';
+        //Util::printr($post);
 
+        $post['user'] = $_SESSION['loggedIn'];
 
         $error = false;
 
-        foreach($post as $p)
+        if($post['event_name'] =='' || $post['event_date'] == '')
         {
-            if($p == '')
-            {
-                $error = true;
-            }
+            $error = true;
         }
 
+
+        
         if($error == false)
         {
-            $insert_res = $this->posts_model->insert($post);
+            $post['event_date'] = strtotime($post['event_date']);
+            $insert_res = $this->event_model->insert($post);
             if($insert_res)
             {
-                $redirect = site_url('g/'.$insert_res['group']['group_name'].'/post/'.$insert_res['post_id']);
+                //$redirect = site_url('g/'.$insert_res['group']['group_name'].'/post/'.$insert_res['post_id']);
 
-                echo json_encode(array('status' => 'true', 'msg' => 'Post added!', 'redirect' => $redirect));
+                echo json_encode(array('status' => 'true', 'msg' => 'Post added!'));
             }
             else
             {
@@ -62,53 +61,26 @@ class Post_Processor extends Base_Controller
         }
     }
 
-    public function post_reply()
+    public function create_vehicle()
     {
-        $post_list = array('parent_id', 'reply_content', 'parent_id', 'group_id', 'root_post_id', 'post_title');
+        $vehicle_data = $this->input->post('vehicle_data');
+        $vehicle_data = json_decode($vehicle_data, true);
 
-        $post = array();
-        $error = false;
-        foreach($post_list as $item)
+        $vehicle_data['user_id'] = $_SESSION['loggedIn']['user_id'];
+
+        $vehicle = $this->vehicle_model->insert($vehicle_data);
+
+        if($vehicle)
         {
-            $tmp = $this->input->post($item);
-            if($tmp == '')
-            {
-                $error = true;
-            }
-            $post[$item] = $tmp;
-        }
-
-        //Util::printr($post);
-
-        $post['username'] = $_SESSION['loggedIn']['username'];
-        $post['post_content'] = $post['reply_content'];
-        unset($post['reply_content']);
-        if($error == false)
-        {
-            if($this->posts_model->insert($post))
-            {
-                //$posts = $this->posts_model->get_posts_threaded('none', $post_id);
-                //$data['post'] = $posts[0];
-
-                //$data['replies'] = $this->format_threaded_posts($data['post']['children']);
-                $this->posts_model->increment_post_count($post['root_post_id']);
-                
-                $posts = $this->posts_model->get_posts_threaded('none', $post['root_post_id']);
-                $posts = $posts[0];
-                //Util::printr($data['post']);
-                $replies = $this->format_threaded_posts($posts['children']);
-                echo json_encode(array('status' => 'true', 'msg' => 'Post added!', 'replies' => $replies));
-            }
-            else
-            {
-                echo json_encode(array('status' => 'false', 'msg' => 'Error creating post'));
-            }
+            $vehicle = $this->vehicle_model->get_vehicle_for_user($_SESSION['loggedIn']['user_id']);
+            $view = $this->load->view('presenters/my_car/view_vehicle', array('vehicle' => $vehicle), true);
+            echo json_encode(array('status' => 'true', 'vehicles' => $view));
         }
         else
         {
-            echo json_encode(array('status' => 'false', 'msg' => 'Please enter a reply'));
+            echo json_encode(array('status' => 'false', 'msg' => 'Error adding vehicle'));
         }
-
-
     }
+
+
 }

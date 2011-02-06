@@ -38,21 +38,27 @@ h3 {
     float: right;
 }
 
+input.error {
+    border: 1px solid #d60000;
+}
+
 .button-blue {
     margin: 0px 0px 0px 0px;
     padding: 5px 5px 5px 5px;
     height: 30px;
-    width: 100px;
+    min-width: 50px;
     display: block;
     position: relative;
     background: #2a5599;
     font-size: .8em;
     color: #fff;
     border: none;
+    cursor: pointer;
 }
 
 .button-blue:hover {
     background: #507abe;
+    cursor: pointer;
 }
 
 .button-blue-small {
@@ -70,6 +76,25 @@ h3 {
 
 .button-blue-small:hover {
     background: #507abe;
+}
+
+.div-row .label .button-blue {
+    margin: 0px 0px 0px 0px;
+    padding: 5px 5px 5px 5px;
+    height: 30px;
+    width: 100px;
+    display: block;
+    position: relative;
+    background: #2a5599;
+    font-size: .8em;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.div-row .label .button-blue:hover {
+    background: #507abe;
+    cursor: pointer;
 }
 
 
@@ -117,7 +142,7 @@ h3 {
     .div-row .label {
         margin: 0px 0px 0px 0px;
         padding: 5px 0px 0px 0px;
-        width: 150px;
+        width: 200px;
         height: 50px;
         color: #434343;
         position: relative;
@@ -150,7 +175,7 @@ h3 {
             padding: 5px 0px 0px 0px;
             background: #f6f6f6;
             width: 500px;
-        height: 200px;
+            height: 200px;
             border: 2px solid #cfcfcd;
             font-size: 1.3em;
 
@@ -161,7 +186,7 @@ h3 {
         }
 
 
-        .div-row .field input, select {
+        .div-row .field input:text, select {
             padding: 5px 0px 0px 0px;
             height: 30px;
             background: #f6f6f6;
@@ -169,6 +194,10 @@ h3 {
             width: 100%;
             font-size: 1.3em;
 
+        }
+
+        .div-row .field .text {
+            margin: 10px 0px 0px 0px;
         }
 
 
@@ -192,6 +221,55 @@ h3 {
             cursor: pointer;
         }
 
+.vehicle-view {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    min-width: 100px;
+    position: relative;
+    float: left;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+    .vehicle-view .vehicle-name {
+        margin: 0px 0px 10px 0px;
+        padding: 0px 0px 0px 0px;
+        
+    }
+
+        .vehicle-view .vehicle-name span.vehicle-type {
+            font-size: .9em;
+            color: #afafae;
+            
+        }
+
+    .vehicle-view .seat-view {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+    }
+
+        .vehicle-view .seat-view ul {
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;
+            list-style: none;
+        }
+
+            .vehicle-view .seat-view ul li {
+                margin: 0px 0px 0px 0px;
+                padding: 5px 5px 5px 5px;
+                list-style: none;
+                font-size: .8em;
+                border-top: 1px solid #efefef;
+                border-bottom: 1px solid #efefef;
+            }
+
+/*
+            .vehicle-view .seat-view ul li:not(:last-of-type){
+                border-bottom: 1px solid #efefef;
+            }
+*/
 
 #header {
     margin: 0px 0px 0px 0px;
@@ -309,15 +387,37 @@ h3 {
 
     }
 
-    #left-col .new-post:hover {
-        background: #507abe;
-        cursor: pointer;
+        #left-col .new-post:hover {
+            background: #507abe;
+            cursor: pointer;
+        }
+
+            #left-col .new-post a, a:visited {
+                text-decoration: none;
+                color: #fff;
+            }
+
+    #left-col .new-button {
+        margin: 0px 0px 10px 0px;
+        padding: 5px 0px 5px 0px;
+        height: 18px;
+        text-align: center;
+        background: #2a5599;
+        color: #fff;
+        text-decoration: none;
     }
 
-        #left-col .new-post a, a:visited {
-            text-decoration: none;
-            color: #fff;
+        #left-col .new-button:hover {
+            background: #507abe;
+            cursor: pointer;
         }
+
+            #left-col .new-post a, a:visited {
+                text-decoration: none;
+                color: #fff;
+            }
+
+
 
 
 #main-with-left {
@@ -429,13 +529,13 @@ h3 {
 
 .flat-post {
     margin: 0px 5px 0px 0px;
-    padding: 5px 0px 15px 0px;
+    padding: 5px 0px 5px 0px;
     background: #f3f3f3;
 }
 
     .flat-post .post-number {
         margin: 0px 15px 0px 0px;
-        padding: 20px 5px 0px 5px;
+        padding: 10px 5px 0px 5px;
         width: 10px;
         height: 40px;
         display: block;
@@ -485,7 +585,6 @@ h3 {
         .flat-post .meta-container .sub-title {
             margin: 0px 0px 0px 0px;
             padding: 1px 0px 2px 0px;
-            height: 14px;
             font-size: .7em;
         }
 
@@ -597,15 +696,15 @@ h3 {
         float: left;
     }
 
+/*
     .form-container .button-blue {
         margin: 0px 0px 0px 0px;
         padding: 5px 5px 5px 5px;
         height: 30px;
-        width: 100px;
         display: block;
         position: relative;
         background: #2a5599;
-        font-size: .8em;
+        font-size: .7em;
         color: #fff;
         border: none;
     }
@@ -613,6 +712,8 @@ h3 {
     .form-container .button-blue:hover {
         background: #507abe;
     }
+    */
+    
 
 table.group-table {
     margin: 0px 0px 0px 0px;
