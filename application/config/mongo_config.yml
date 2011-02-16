@@ -1,0 +1,4 @@
+database: rideboard
+username:
+password:
+hostname: seanmcgary.com:27017
