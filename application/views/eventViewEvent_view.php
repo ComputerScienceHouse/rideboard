@@ -3,6 +3,8 @@
         var event_id = '<?=$event['event_id']?>';
         var user_vehicle_id = '<?=$user_vehicle_data['vehicle_id']?>';
         var add_vehicle = '<?=site_url('post_processor/add_vechicle')?>';
+        var select_seat = '<?=site_url('post_processor/select_seat')?>';
+        var delete_car = '<?=site_url('post_processor/delete_vehicle')?>';
     </script>
     <div class="flat-post">
         <div class="meta-container">
@@ -18,6 +20,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="status-console" class="status-console">
+
     </div>
     <div id="event_vehicles" class="event_vehicles">
         <?=$event_vehicles?>

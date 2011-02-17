@@ -200,8 +200,22 @@ input.error {
             cursor: pointer;
         }
 
+.status-console {
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    height: 25px;
+}
+
+    .status-console span.error {
+        color: #a70000;
+    }
+
+    .status-console span.success {
+        color: #238700;
+    }
+
 .vehicle-view {
-    margin: 0px 0px 0px 0px;
+    margin: 0px 10px 0px 0px;
     padding: 10px 10px 10px 10px;
     display: block;
     min-width: 200px;
@@ -211,6 +225,10 @@ input.error {
     border-radius: 5px;
     -moz-border-radius: 5px;
 }
+
+    .your-vehicle {
+        border: 1px solid #238700;
+    }
 
     .vehicle-view .vehicle-name {
         margin: 0px 0px 10px 0px;
@@ -243,6 +261,45 @@ input.error {
                 border-top: 1px solid #efefef;
                 border-bottom: 1px solid #efefef;
             }
+
+                .vehicle-view .seat-view ul li .seat-button-reg {
+                    margin: 0px 0px 0px 0px;
+                    padding: 5px 5px 5px 5px;
+                    background: #2a5599;
+                    color: #fff;
+                }
+
+                    .vehicle-view .seat-view ul li .seat-button-reg:hover {
+                        background: #507abe;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+
+                .vehicle-view .seat-view ul li .seat-button-vip {
+                    margin: 0px 0px 0px 0px;
+                    padding: 5px 5px 5px 5px;
+                    background: #ffff66;
+                    color: #402b00;
+                }
+
+                    .vehicle-view .seat-view ul li .seat-button-vip:hover {
+                        background: #ffffbf;
+                        color: #402b00;
+                        cursor: pointer;
+                    }
+
+                .vehicle-view .seat-view ul li .seat-button-bitch {
+                    margin: 0px 0px 0px 0px;
+                    padding: 5px 5px 5px 5px;
+                    background: #dbdbda;
+                    color: #434343;
+                }
+
+                    .vehicle-view .seat-view ul li .seat-button-bitch:hover {
+                        background: #ebebe9;
+                        color: #434343;
+                        cursor: pointer;
+                    }
 
 /*
             .vehicle-view .seat-view ul li:not(:last-of-type){

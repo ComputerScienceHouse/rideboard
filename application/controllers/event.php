@@ -47,7 +47,11 @@ class Event extends Base_Controller
 
         $data['add_car_modal'] = $this->load->view('presenters/event/add-car-modal', $data, true);
 
+
+        $user_vehicle = $this->event_vehicles->get_user_vehicle_for_event($event_id, $_SESSION['loggedIn']['user_id']);
+        $left_data['left_col'] = $this->load->view('presenters/event/left_col', array('user_vehicle' => $user_vehicle), true);
+
         $this->page->load_javascript(site_url('js/add-car-to-event.js'));
-        $this->page->render('eventViewEvent_view', $data, 'leftColEvent_view');
+        $this->page->render('eventViewEvent_view', $data, 'leftColEvent_view', $left_data);
     }
 }

@@ -82,6 +82,63 @@ class Post_Processor extends Base_Controller
         }
     }
 
+    public function select_seat()
+    {
+        $data = json_decode($this->input->post('data'), true);
+        $user_vehicle = $this->event_vehicles->get_user_vehicle_for_event($data['event_id'], $_SESSION['loggedIn']['user_id']);
+        // if user doesnt have a vehicle on the board, then they can sign up
+        if($user_vehicle == false)
+        {
+            // get the vehicle
+            $selected_vehicle = $this->event_vehicles->get_vehicle_for_id($data['car_id'], $data['event_id']);
+            $seats = $selected_vehicle['seats'];
+            //$user_in_other_car = $this->event_vehicles->user_already_attending();
+            if($selected_vehicle != false && ($seats[$data['seat_num']] == "VIP" || $seats[$data['seat_num']] == "" || $seats[$data['seat_num']] == "Bitch"))
+            {
+                $selected_vehicle['seats'][$data['seat_num']] = $_SESSION['loggedIn']['full_name'];
+
+                $res = $this->event_vehicles->add_person_to_vehicle($selected_vehicle);
+
+                if($res == true)
+                {
+                    $event_vehicles = $this->event_vehicles($data['event_id']);
+                    echo json_encode(array('status' => 'true', 'event_vehicles' => $event_vehicles));
+                }
+                else
+                {
+                    echo json_encode(array('status' => 'false', 'msg' => $res));
+                }
+            }
+        }
+        else
+        {
+            echo json_encode(array('status' => 'false', 'msg' => 'Youre already driving you retard'));
+        }
+    }
+
+    public function delete_vehicle()
+    {
+        $data = json_decode($this->input->post('data'), true);
+
+
+
+        $resp = $this->event_vehicles->delete_vehicle_from_event($data['event_id'], $data['vehicle_id']);
+
+        if($resp == true)
+        {
+            $event_vehicles = $this->event_vehicles($data['event_id']);
+
+            $user_vehicle = $this->event_vehicles->get_user_vehicle_for_event($data['event_id'], $_SESSION['loggedIn']['user_id']);
+            $car_button = $this->load->view('presenters/event/left_col', array('user_vehicle' => $user_vehicle), true);
+
+            echo json_encode(array('status' => 'true', 'event_vehicles' => $event_vehicles, 'car_button' => $car_button));
+        }
+        else
+        {
+            echo json_encode(array('status' => 'false', 'msg' => 'Error removing your car'));
+        }
+    }
+
     public function add_vechicle()
     {
         $vehicle_id = $this->input->post('vehicle_id');
@@ -99,16 +156,25 @@ class Post_Processor extends Base_Controller
         $insert = $this->event_vehicles->add_vehicle_to_event($user_vehicle, $event_id);
         if($insert)
         {
-            $event_vehicles = $this->event_vehicles->get_vehicles_for_event($event_id);
-            $event_vehicles = $this->load->view('presenters/event/event_vehicles', array('vehicles' => $event_vehicles), true);
-            echo json_encode(array('status' => 'true', 'event_vehicles' => $event_vehicles));
+            $event_vehicles = $this->event_vehicles($event_id);
+
+            $user_vehicle = $this->event_vehicles->get_user_vehicle_for_event($event_id, $_SESSION['loggedIn']['user_id']);
+            $car_button = $this->load->view('presenters/event/left_col', array('user_vehicle' => $user_vehicle), true);
+
+            echo json_encode(array('status' => 'true', 'event_vehicles' => $event_vehicles, 'car_button' => $car_button));
         }
         else
         {
             echo json_encode(array('status' => 'false'));
         }
+    }
 
+    private function event_vehicles($event_id)
+    {
+        $event_vehicles = $this->event_vehicles->get_vehicles_for_event($event_id);
+        $event_vehicles = $this->load->view('presenters/event/event_vehicles', array('vehicles' => $event_vehicles), true);
 
+        return $event_vehicles;
     }
 
 
