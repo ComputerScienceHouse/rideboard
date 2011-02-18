@@ -73,8 +73,6 @@ input.error {
     background: #507abe;
 }
 
-
-
 .modal {
     margin: 0px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
@@ -112,6 +110,10 @@ input.error {
         float: left;
         position: relative;
     }
+
+.seat {
+    margin: 0px 0px 10px 0px;
+}
 .div-row {
     margin: 10px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
@@ -165,13 +167,14 @@ input.error {
         }
 
 
-        .div-row .field input, select {
-            padding: 5px 0px 0px 0px;
-            height: 30px;
+        .div-row .field input[type=text], select {
+            padding: 0px 0px 0px 0px;
+            height: 25px;
             background: #f6f6f6;
             border: 2px solid #cfcfcd;
-            width: 100%;
-            font-size: 1.3em;
+            font-size: 1.1em;
+            /*position: relative;
+            float: left;*/
 
         }
 
@@ -194,6 +197,7 @@ input.error {
 
 
         }
+
 
         .div-row .label .submit-button:hover {
             background: #e0e1d7;
@@ -719,7 +723,7 @@ input.error {
     padding: 0px 0px 0px 0px;
 }
 
-    .form-container input {
+    .form-container input[type=text] {
         border: 1px solid #999999;
         background: #fff;
         height: 20px;
@@ -734,7 +738,7 @@ input.error {
         min-height: 40px;
     }
 
-    .form-container .label {
+    .form-container .row .label {
         margin: 0px 0px 0px 0px;
         padding: 5px 0px 0px 0px;
         width: 150px;
@@ -743,10 +747,10 @@ input.error {
         float: left;
     }
 
-    .form-container .field {
+    .form-container .row .field {
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
-        width: 200px;
+        width: 400px;
         display: block;
         position: relative;
         float: left;

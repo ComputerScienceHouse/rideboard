@@ -64,11 +64,6 @@ class Event_Vehicles extends Base_Model
         }
     }
 
-    public function delete_from_vehicle()
-    {
-        
-    }
-
     public function find_person_in_vehicle($full_name)
     {
         $results = $this->event_vehicles->find(array('seats' => $full_name));
@@ -87,6 +82,21 @@ class Event_Vehicles extends Base_Model
             return false;
         }
         
+    }
+
+    public function update_vehicle($vehicle_data)
+    {
+        //Util::printr($vehicle_data);
+        try
+        {
+            $this->event_vehicles->update(array('event_id' => $vehicle_data['event_id'], 'vehicle_id' => $vehicle_data['vehicle_id']), $vehicle_data, true);
+
+            return true;
+        }
+        catch(MongoCursorException $e)
+        {
+            return $e;
+        }
     }
 
     public function add_person_to_vehicle($vehicle_data)

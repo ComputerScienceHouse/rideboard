@@ -93,18 +93,35 @@ class Post_Processor extends Base_Controller
             $selected_vehicle = $this->event_vehicles->get_vehicle_for_id($data['car_id'], $data['event_id']);
             $seats = $selected_vehicle['seats'];
             //$user_in_other_car = $this->event_vehicles->user_already_attending();
-            if($selected_vehicle != false && ($seats[$data['seat_num']] == "VIP" || $seats[$data['seat_num']] == "" || $seats[$data['seat_num']] == "Bitch"))
+            if($selected_vehicle != false && ($seats[$data['seat_num']] == "VIP" || $seats[$data['seat_num']] == "Regular" || $seats[$data['seat_num']] == "Bitch"))
             {
 
                 $in = $this->event_vehicles->find_person_in_vehicle($_SESSION['loggedIn']['full_name']);
                 if($in != false)
                 {
+                    //Util::printr($in);
+                    foreach($in as &$i)
+                    {
+                        $counter = 0;
+                        foreach($i['seats'] as &$seat)
+                        {
+                            if($seat == $_SESSION['loggedIn']['full_name'])
+                            {
+                                $seat = $i['seat_schema'][$counter];
+                            }
+                            $counter++;
+                        }
 
+                        $res = $this->event_vehicles->update_vehicle($i);
+                    }
                 }
+
+                $selected_vehicle = $this->event_vehicles->get_vehicle_for_id($data['car_id'], $data['event_id']);
+                $seats = $selected_vehicle['seats'];
 
 
                 $selected_vehicle['seats'][$data['seat_num']] = $_SESSION['loggedIn']['full_name'];
-
+                //Util::printr($selected_vehicle);
                 $res = $this->event_vehicles->add_person_to_vehicle($selected_vehicle);
 
                 if($res == true)
@@ -116,6 +133,10 @@ class Post_Processor extends Base_Controller
                 {
                     echo json_encode(array('status' => 'false', 'msg' => $res));
                 }
+            }
+            else
+            {
+                echo "foobar";
             }
         }
         else
@@ -149,13 +170,34 @@ class Post_Processor extends Base_Controller
 
     public function add_vechicle()
     {
+        // check to see if the user is currently in any cars, if they are, remove them.
+        $in = $this->event_vehicles->find_person_in_vehicle($_SESSION['loggedIn']['full_name']);
+        if($in != false)
+        {
+            //Util::printr($in);
+            foreach($in as &$i)
+            {
+                $counter = 0;
+                foreach($i['seats'] as &$seat)
+                {
+                    if($seat == $_SESSION['loggedIn']['full_name'])
+                    {
+                        $seat = $i['seat_schema'][$counter];
+                    }
+                    $counter++;
+                }
+
+                $res = $this->event_vehicles->update_vehicle($i);
+            }
+        }
+        
         $vehicle_id = $this->input->post('vehicle_id');
         $event_id = $this->input->post('event_id');
         $seats = json_decode($this->input->post('seats'), true);
-
         $user_vehicle = $this->vehicle_model->get_vehicle_for_user($_SESSION['loggedIn']['user_id']);
 
         $user_vehicle['seats'] = $seats;
+        $user_vehicle['seat_schema'] = $seats;
 
         $insert = $this->event_vehicles->add_vehicle_to_event($user_vehicle, $event_id);
         if($insert)

@@ -95,7 +95,7 @@ $(document).ready(function(){
         });
 
         var post = {vehicle_id: user_vehicle_id, seats: Ext.encode(seats), event_id: event_id};
-        console.log(post);
+        //console.log(post);
         $('#vehicle_container').toggle();
         $('#vehicle-spinner').toggle();
         Ext.Ajax.request({
@@ -117,7 +117,7 @@ $(document).ready(function(){
                     $.modal.close();
                 }, 1000);
 
-                console.log(obj);
+                //console.log(obj);
             },
             failure: function(response, opts)
             {

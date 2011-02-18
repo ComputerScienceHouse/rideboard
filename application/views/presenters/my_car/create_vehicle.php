@@ -7,7 +7,7 @@
     <form name="create-vehicle" id="create-vehicle">
         <div class="row clearboth">
             <div class="label">
-                Name
+                Name:
             </div>
             <div class="field">
                 <input type="text" name="vehicle_name" id="vehicle_name">
@@ -15,7 +15,7 @@
         </div>
         <div class="row clearboth">
             <div class="label">
-                Type
+                Type:
             </div>
             <div class="field">
                 <select name="vehicle_type" id="vehicle_type" class="type">
@@ -31,7 +31,7 @@
         </div>
         <div class="row clearboth">
             <div class="label">
-                Number of Seats
+                # of Seats:
             </div>
             <div class="field">
                 <select name="num_seats" id="num_seats" class="num_seats">
@@ -46,7 +46,7 @@
         </div>
         <div class="row clearboth">
             <div class="label">
-                Default Seats
+                Default Seats: 
             </div>
             <div class="field">
                 <div id="seats">
