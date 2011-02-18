@@ -64,6 +64,31 @@ class Event_Vehicles extends Base_Model
         }
     }
 
+    public function delete_from_vehicle()
+    {
+        
+    }
+
+    public function find_person_in_vehicle($full_name)
+    {
+        $results = $this->event_vehicles->find(array('seats' => $full_name));
+
+        if($results->count() > 0)
+        {
+            $vehicle = array();
+            foreach($results as $res)
+            {
+                $vehicle[] = $res;
+            }
+            return $vehicle;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
     public function add_person_to_vehicle($vehicle_data)
     {
         try

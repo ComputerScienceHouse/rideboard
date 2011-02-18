@@ -95,6 +95,14 @@ class Post_Processor extends Base_Controller
             //$user_in_other_car = $this->event_vehicles->user_already_attending();
             if($selected_vehicle != false && ($seats[$data['seat_num']] == "VIP" || $seats[$data['seat_num']] == "" || $seats[$data['seat_num']] == "Bitch"))
             {
+
+                $in = $this->event_vehicles->find_person_in_vehicle($_SESSION['loggedIn']['full_name']);
+                if($in != false)
+                {
+
+                }
+
+
                 $selected_vehicle['seats'][$data['seat_num']] = $_SESSION['loggedIn']['full_name'];
 
                 $res = $this->event_vehicles->add_person_to_vehicle($selected_vehicle);
@@ -145,13 +153,9 @@ class Post_Processor extends Base_Controller
         $event_id = $this->input->post('event_id');
         $seats = json_decode($this->input->post('seats'), true);
 
-        //Util::printr($seats);
-
         $user_vehicle = $this->vehicle_model->get_vehicle_for_user($_SESSION['loggedIn']['user_id']);
 
         $user_vehicle['seats'] = $seats;
-
-        //Util::printr($user_vehicle);
 
         $insert = $this->event_vehicles->add_vehicle_to_event($user_vehicle, $event_id);
         if($insert)
