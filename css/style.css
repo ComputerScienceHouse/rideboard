@@ -26,6 +26,12 @@ h3 {
     color: #333333;
 }
 
+.dicks {
+    margin: 0px 0px 20px 0px;
+    padding: 0px 0px 0px 0px;
+    clear: both;
+}
+
 .clearboth {
     clear: both;
 }
@@ -114,6 +120,7 @@ input.error {
 .seat {
     margin: 0px 0px 10px 0px;
 }
+
 .div-row {
     margin: 10px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
