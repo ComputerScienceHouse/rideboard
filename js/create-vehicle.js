@@ -69,6 +69,8 @@ $(document).ready(function(){
                         $('#main-with-left').html('');
                         $('#main-with-left').append(obj.vehicles);
 
+                        $('#left-col').append(obj.remove_button);
+
                     }
                     else
                     {
@@ -85,5 +87,30 @@ $(document).ready(function(){
         }
 
         return false;
+    });
+
+    $('#delete-my-car').live('click', function(){
+        Ext.Ajax.request({
+            url: delete_car,
+            success: function(response, opts)
+            {
+                var obj = Ext.decode(response.responseText);
+
+                if(obj.status == 'true')
+                {
+                    $('#main-with-left').html('');
+                    $('#main-with-left').append(obj.create_form);
+                    $('#delete-vehicle').remove();
+                }
+                else
+                {
+
+                }
+            },
+            failure: function(response, opts)
+            {
+                var obj = Ext.decode(reponse.responseText);
+            }
+        });
     });
 });

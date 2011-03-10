@@ -14,6 +14,7 @@ class Main extends Base_Controller
     public function index()
     {
         $data['events'] = $this->event_model->get_current_events();
+
         //Util::printr($data);
         $render_data['event_list'] = $this->load->view($this->presenter.'list_events', $data, true);
         $this->page->render('mainIndex_view', $render_data);

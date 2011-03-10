@@ -14,3 +14,4 @@
         </ul>
     </div>
 </div>
+<h1>Manage VIP's</h1>

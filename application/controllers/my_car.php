@@ -24,12 +24,13 @@ class My_Car extends Base_Controller
 
         $data['vehicle'] = $this->vehicle_model->get_vehicle_for_user($_SESSION['loggedIn']['user_id']);
 
-
+        $car_exists = false;
 
         if($data['vehicle'] != false)
         {
             $data['exists'] = true;
             $data['view_vehicle'] = $this->load->view($this->presenter.'view_vehicle', array('vehicle' => $data['vehicle']), true);
+            $car_exists = true;
         }
         else
         {
@@ -37,6 +38,28 @@ class My_Car extends Base_Controller
             $data['create'] = $this->load->view($this->presenter.'create_vehicle', '', true);
         }
 
-        $this->page->render('myCarIndex_view', $data);
+        $remove_button = $this->remove_vehicle_button();
+        $this->page->render('myCarIndex_view', $data, 'leftColMyCar_view', array('car_exists' => $car_exists, 'remove_button' => $remove_button));
+    }
+
+    public function remove_vehicle_button()
+    {
+        $button = '
+            <div class="new-post" id="delete-vehicle">
+                <a href="#" id="delete-my-car">Delete Vehicle</a>
+            </div>';
+
+        return $button;
+    }
+
+    public function delete_car()
+    {
+        $res = $this->vehicle_model->delete_user_vehicle($_SESSION['loggedIn']['user_id']);
+
+        if($res != false)
+        {
+            $create = $this->load->view($this->presenter.'create_vehicle', '', true);
+            echo json_encode(array('status' => 'true', 'create_form' => $create));
+        }
     }
 }

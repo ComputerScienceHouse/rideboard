@@ -74,7 +74,8 @@ class Post_Processor extends Base_Controller
         {
             $vehicle = $this->vehicle_model->get_vehicle_for_user($_SESSION['loggedIn']['user_id']);
             $view = $this->load->view('presenters/my_car/view_vehicle', array('vehicle' => $vehicle), true);
-            echo json_encode(array('status' => 'true', 'vehicles' => $view));
+            $remove_button = $this->remove_vehicle_button();
+            echo json_encode(array('status' => 'true', 'vehicles' => $view, 'remove_button' => $remove_button));
         }
         else
         {
@@ -213,6 +214,16 @@ class Post_Processor extends Base_Controller
         {
             echo json_encode(array('status' => 'false'));
         }
+    }
+
+    public function remove_vehicle_button()
+    {
+        $button = '
+            <div class="new-post" id="delete-vehicle">
+                <a href="#" id="delete-my-car">Delete Vehicle</a>
+            </div>';
+
+        return $button;
     }
 
     private function event_vehicles($event_id)

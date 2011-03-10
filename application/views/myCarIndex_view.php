@@ -1,5 +1,7 @@
+<script type="text/javascript">
+    var delete_car = '<?=site_url('my_car/delete_car')?>';
+</script>
 <div id="main-with-left">
-    <div class="dicks">
     <?php
         if($exists)
         {
@@ -10,9 +12,4 @@
             echo $create;
         }
     ?>
-    </div>
-    <br>
-    <div class="dicks">
-        <h1>Manage VIP's</h1>
-    </div>
 </div>

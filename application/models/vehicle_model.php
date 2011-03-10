@@ -67,7 +67,20 @@ class Vehicle_Model extends Base_Model
         }
     }
 
-
+    public function delete_user_vehicle($user_id)
+    {
+        $user_vehicle = $this->get_vehicle_for_user($user_id);
+        try
+        {
+            $this->vehicle_collection->remove(array('vehicle_id' => $user_vehicle['vehicle_id']));
+            $this->event_vehicles->remove(array('vehicle_id' => $user_vehicle['vehicle_id']));
+            return true;
+        }
+        catch(MongoCursorException $e)
+        {
+            return $e;
+        }
+    }
 
     private function generate_vehicle_id()
     {
